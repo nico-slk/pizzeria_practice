@@ -1,6 +1,7 @@
 package com.practice.pizzeria.persistance.repository;
 
 import com.practice.pizzeria.persistance.entity.CustomerEntity;
+import com.practice.pizzeria.persistance.projections.OrderSummary;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.data.repository.query.Param;
