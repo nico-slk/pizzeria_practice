@@ -2,12 +2,15 @@ package com.practice.pizzeria.services;
 
 import com.practice.pizzeria.persistance.entity.PizzaEntity;
 import com.practice.pizzeria.persistance.repository.PizzaRepository;
+import com.practice.pizzeria.services.dto.UpdatePizzaPriceDTO;
+import com.practice.pizzeria.services.exceptions.EmailAPIException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -58,5 +61,15 @@ public class PizzaService {
         Pageable pageable = PageRequest.of(page, size, sort);
         System.out.println(page);
         return this.pizzaRepository.findAllByAvailableTrue(pageable);
+    }
+
+    @Transactional(noRollbackFor = EmailAPIException.class)
+    public void updatePrice(UpdatePizzaPriceDTO dto) {
+        this.pizzaRepository.updatePrice(dto);
+        this.sendEmail();
+    }
+
+    public void sendEmail() {
+        throw new EmailAPIException();
     }
 }

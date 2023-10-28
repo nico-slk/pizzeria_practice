@@ -2,6 +2,7 @@ package com.practice.pizzeria.web.controller;
 
 import com.practice.pizzeria.persistance.entity.PizzaEntity;
 import com.practice.pizzeria.services.PizzaService;
+import com.practice.pizzeria.services.dto.UpdatePizzaPriceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -76,5 +77,11 @@ public class PizzaController {
                                                                      @RequestParam(defaultValue = "price") String sortBy,
                                                                      @RequestParam(defaultValue = "ASC") String sortDirection) {
         return ResponseEntity.ok(this.pizzaService.getAllAvailablePageable(page, size, sortBy, sortDirection));
+    }
+
+    @PutMapping("/update/price")
+    public ResponseEntity<Void> updatePizzaPriceDTOResponseEntity(@RequestBody UpdatePizzaPriceDTO dto) {
+        this.pizzaService.updatePrice(dto);
+        return ResponseEntity.ok().build();
     }
 }
