@@ -1,6 +1,7 @@
 package com.practice.pizzeria.persistance.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.practice.pizzeria.persistance.audit.AuditableEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class OrderItemEntity {
+public class OrderItemEntity extends AuditableEntity {
 
     @Id
     @Column(name = "id_order", nullable = false)

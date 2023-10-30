@@ -63,10 +63,11 @@ public class PizzaService {
         return this.pizzaRepository.findAllByAvailableTrue(pageable);
     }
 
-    @Transactional(noRollbackFor = EmailAPIException.class)
+//    @Transactional(noRollbackFor = EmailAPIException.class)
+    @Transactional
     public void updatePrice(UpdatePizzaPriceDTO dto) {
         this.pizzaRepository.updatePrice(dto);
-        this.sendEmail();
+//        this.sendEmail();
     }
 
     public void sendEmail() {
