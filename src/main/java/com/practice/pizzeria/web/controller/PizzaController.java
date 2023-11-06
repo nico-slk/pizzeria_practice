@@ -21,6 +21,7 @@ public class PizzaController {
     }
 
     @GetMapping("/")
+    @CrossOrigin(origins = "http://localhost:5173/")
     public ResponseEntity<List<PizzaEntity>> getAll() {
         return ResponseEntity.ok(this.pizzaService.getAll());
     }
@@ -38,7 +39,7 @@ public class PizzaController {
         return ResponseEntity.badRequest().build();
     }
 
-    @PutMapping("/{idPizza}")
+    @PutMapping
     public ResponseEntity<PizzaEntity> updatePizza(@RequestBody PizzaEntity pizza) {
         if (pizza.getIdPizza() != null && this.pizzaService.pizzaExist(pizza.getIdPizza())) {
             return ResponseEntity.ok(this.pizzaService.savePizza(pizza));
